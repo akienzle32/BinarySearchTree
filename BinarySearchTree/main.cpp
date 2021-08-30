@@ -45,20 +45,6 @@ public:
             
     }
     
-    string getMin2() const
-    {
-        Node *current = root;
-        
-        if (current == nullptr)
-            return("null");
-        
-        while (current->left != nullptr)
-        {
-            current = current->left;
-        }
-        return(current->value);
-    }
-    
     string getMax(Node* rootPtr) const
     {
         if (rootPtr == nullptr)
@@ -68,53 +54,6 @@ public:
             return(rootPtr->value);
         
         return(getMax(rootPtr->right));
-    }
-    
-    string getMax2() const
-    {
-        Node* current = root;
-        
-        if (current == nullptr)
-            return("null");
-        
-        while (current->right != nullptr)
-            current = current->right;
-        return(current->value);
-    }
-    
-    void insert(string& newVal)
-    {
-        if (root == nullptr)
-            root = new Node(newVal);
-        
-        Node* current = root;
-        
-        if (newVal == current->value)
-            return;
-        
-        for(;;)
-        {
-            if (newVal < current->value)
-            {
-                if (current->left != nullptr)
-                    current = current->left;
-                else
-                {
-                    current->left = new Node(newVal);
-                    return;
-                }
-            }
-            else if (newVal > current->value)
-            {
-                if (current->right != nullptr)
-                    current = current->right;
-                else
-                {
-                    current->right = new Node(newVal);
-                    return;
-                }
-            }
-        }
     }
     
     Node* recursiveInsert(Node* root, string& newVal)
