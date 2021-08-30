@@ -72,24 +72,16 @@ public:
         if (newVal < root->value)
         {
             if (root->left != nullptr)
-            {
                 insert(root->left, newVal);
-            }
             else
-            {
                 root->left = new Node(newVal);
-            }
         }
         else if (newVal > root->value)
         {
             if (root->right != nullptr)
-            {
                 insert(root->right, newVal);
-            }
             else
-            {
                 root->right = new Node(newVal);
-            }
         }
         return(root);
         
