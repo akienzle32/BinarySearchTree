@@ -33,14 +33,29 @@ public:
             return(root->value);
     }
     
-    string getLeftVal() const
+    string getMin(Node* rootPtr) const
     {
-        return (root->left->value);
+        string min;
+        
+        if (root == nullptr)
+            return("Null");
+        
+        while (rootPtr->left != nullptr)
+            rootPtr = rootPtr->left;
+        
+        return(rootPtr->value);
+            
     }
     
-    string getRightVal() const
+    string getMax(Node* rootPtr) const
     {
-        return(root->right->value);
+        if (root == nullptr)
+            return("Null");
+        
+        while(rootPtr->right != nullptr)
+            rootPtr = rootPtr->right;
+        
+        return(rootPtr->value);
     }
     
     Node* insert(Node* root, string& newVal)
@@ -92,13 +107,17 @@ int main() {
     string secondVal = "apples";
     string thirdVal = "pears";
     string fourthVal = "bananas";
+    string fifthVal = "strawberry";
     
     root = bsTree.insert(root, firstVal);
     bsTree.insert(root, secondVal);
     bsTree.insert(root, thirdVal);
+    bsTree.insert(root, fourthVal);
+    bsTree.insert(root, fifthVal);
 
     cout << bsTree.getRootVal() << endl;
-    cout << bsTree.getRightVal() << endl;
+    cout << bsTree.getMin(root) << endl;
+    cout << bsTree.getMax(root) << endl;
     
     
     
