@@ -25,6 +25,11 @@ public:
     BinarySearchTree() : root(nullptr)
     {}
     
+    string getRootVal() const
+    {
+        return(root->value);
+    }
+    
     void insert(string& newVal)
     {
         if (root == nullptr)
@@ -68,6 +73,16 @@ private:
 };
 
 int main() {
+    
+    BinarySearchTree bsTree;
+    string firstNode = "oranges";
+    string secondNode = "apples";
+    
+    bsTree.insert(firstNode);
+    bsTree.insert(secondNode);
+    cout << bsTree.getRootVal() << endl;
+    cout << bsTree.getLeftVal() << endl;
+    
     
     return(0);
 }
