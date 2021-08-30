@@ -35,15 +35,13 @@ public:
     
     string getMin(Node* rootPtr) const
     {
-        string min;
-        
-        if (root == nullptr)
+        if (rootPtr == nullptr)
             return("Null");
         
-        while (rootPtr->left != nullptr)
-            rootPtr = rootPtr->left;
+        if (rootPtr->left == nullptr)
+            return(rootPtr->value);
         
-        return(rootPtr->value);
+        return(getMin(rootPtr->left));
             
     }
     
@@ -52,10 +50,10 @@ public:
         if (root == nullptr)
             return("Null");
         
-        while(rootPtr->right != nullptr)
-            rootPtr = rootPtr->right;
+        if(rootPtr->right == nullptr)
+            return(rootPtr->value);
         
-        return(rootPtr->value);
+        return(getMax(rootPtr->right));
     }
     
     Node* insert(Node* root, string& newVal)
@@ -84,7 +82,6 @@ public:
                 root->right = new Node(newVal);
         }
         return(root);
-        
     }
     
 private:
