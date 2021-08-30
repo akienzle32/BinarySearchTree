@@ -22,33 +22,33 @@ struct Node
 class BinarySearchTree
 {
 public:
-    BinarySearchTree() : m_root(nullptr)
+    BinarySearchTree() : root(nullptr)
     {}
     
     string getRootVal() const
     {
-        if (m_root == nullptr)
+        if (root == nullptr)
             return("Null");
         else
-            return(m_root->value);
+            return(root->value);
     }
     
     string getLeftVal() const
     {
-        return (m_root->left->value);
+        return (root->left->value);
     }
     
     string getRightVal() const
     {
-        return(m_root->right->value);
+        return(root->right->value);
     }
     
     Node* insert(Node* root, string& newVal)
     {
-        if (m_root == nullptr)
+        if (this->root == nullptr)
         {
             root = new Node(newVal);
-            m_root = root;
+            this->root = root;
         }
         
         if (newVal == root->value)
@@ -69,7 +69,7 @@ public:
         {
             if (root->right != nullptr)
             {
-                insert(root->right,  newVal);
+                insert(root->right, newVal);
             }
             else
             {
@@ -81,7 +81,7 @@ public:
     }
     
 private:
-    Node* m_root;
+    Node* root;
 };
 
 int main() {
