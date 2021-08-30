@@ -6,9 +6,20 @@
 //
 
 #include <iostream>
+#include <string>
+using namespace std;
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+struct Node
+{
+    Node(string& val) : value(val), left(nullptr), right(nullptr)
+    {}
+    
+    string value;
+    Node* left;
+    Node* right;
+};
+
+int main() {
+    
+    return(0);
 }
