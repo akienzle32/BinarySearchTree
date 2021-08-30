@@ -22,66 +22,85 @@ struct Node
 class BinarySearchTree
 {
 public:
-    BinarySearchTree() : root(nullptr)
+    BinarySearchTree() : m_root(nullptr)
     {}
     
     string getRootVal() const
     {
-        return(root->value);
+        if (m_root == nullptr)
+            return("Null");
+        else
+            return(m_root->value);
     }
     
-    void insert(string& newVal)
+    string getLeftVal() const
     {
-        if (root == nullptr)
+        return (m_root->left->value);
+    }
+    
+    string getRightVal() const
+    {
+        return(m_root->right->value);
+    }
+    
+    Node* insert(Node* root, string& newVal)
+    {
+        if (m_root == nullptr)
         {
             root = new Node(newVal);
-            return;
+            m_root = root;
         }
-        Node *current = root;
         
-        for(;;)
+        if (newVal == root->value)
+            return(root);
+        
+        if (newVal < root->value)
         {
-            if (newVal == current->value)
-                return;
-        
-            if (newVal < current->value)
+            if (root->left != nullptr)
             {
-                if (current->left != nullptr)
-                    current = current->left; // Think this is where you'd use recursion.
-                else
-                {
-                    current->left = new Node(newVal);
-                    return;
-                }
+                insert(root->left, newVal);
             }
-            else if (newVal > current->value)
+            else
             {
-                if (current->right != nullptr)
-                    current = current->right;
-                else
-                {
-                    current->right = new Node(newVal);
-                    return;
-                }
+                root->left = new Node(newVal);
             }
         }
+        else if (newVal > root->value)
+        {
+            if (root->right != nullptr)
+            {
+                insert(root->right,  newVal);
+            }
+            else
+            {
+                root->right = new Node(newVal);
+            }
+        }
+        return(root);
         
     }
     
 private:
-    Node* root;
+    Node* m_root;
 };
 
 int main() {
     
     BinarySearchTree bsTree;
-    string firstNode = "oranges";
-    string secondNode = "apples";
+    Node* root = nullptr;
+    string firstVal = "oranges";
+    string secondVal = "apples";
+    string thirdVal = "pears";
+    string fourthVal = "bananas";
     
-    bsTree.insert(firstNode);
-    bsTree.insert(secondNode);
+    root = bsTree.insert(root, firstVal);
+    bsTree.insert(root, secondVal);
+    bsTree.insert(root, thirdVal);
+
     cout << bsTree.getRootVal() << endl;
-    cout << bsTree.getLeftVal() << endl;
+    cout << bsTree.getRightVal() << endl;
+    
+    
     
     
     return(0);
