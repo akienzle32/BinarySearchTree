@@ -108,6 +108,22 @@ public:
         root = nullptr;
     }
     
+    void invertTree(Node* current)
+    {
+        if (current == nullptr)
+            return;
+        
+        else
+        {
+            invertTree(current->left);
+            invertTree(current->right);
+            
+            Node* temp = current->left;
+            current->left = current->right;
+            current->right = temp;
+        }
+    }
+    
 private:
     Node* root;
 };
@@ -128,7 +144,8 @@ int main() {
     bsTree.insert(root, fourthVal);
     bsTree.insert(root, fifthVal);
 
-    cout << bsTree.search(root, "pears") << endl;
+    bsTree.invertTree(root);
+    //cout << bsTree.search(root, "pears") << endl;
     //cout << bsTree.getRootVal() << endl;
     //cout << bsTree.getMin(root) << endl;
     //cout << bsTree.getMax(root) << endl;
