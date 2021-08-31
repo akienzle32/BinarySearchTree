@@ -56,7 +56,7 @@ public:
         return(getMax(rootPtr->right));
     }
     
-    Node* recursiveInsert(Node* root, string& newVal)
+    Node* insert(Node* root, string& newVal)
     {
         if (this->root == nullptr)
         {
@@ -70,18 +70,31 @@ public:
         if (newVal < root->value)
         {
             if (root->left != nullptr)
-                recursiveInsert(root->left, newVal);
+                insert(root->left, newVal);
             else
                 root->left = new Node(newVal);
         }
         else if (newVal > root->value)
         {
             if (root->right != nullptr)
-                recursiveInsert(root->right, newVal);
+                insert(root->right, newVal);
             else
                 root->right = new Node(newVal);
         }
         return(root);
+    }
+    
+    bool search(Node* root, string val)
+    {
+        if (root == nullptr)
+            return(false);
+        if (val == root->value)
+            return(true);
+        
+        if (val < root->value)
+            return(search(root->left, val));
+        else
+            return(search(root->right, val));
     }
     
     void freeTree(Node* current)
@@ -109,17 +122,16 @@ int main() {
     string fourthVal = "bananas";
     string fifthVal = "strawberry";
     
-    root = bsTree.recursiveInsert(root, firstVal);
-    bsTree.recursiveInsert(root, thirdVal);
-    bsTree.recursiveInsert(root, fourthVal);
-    bsTree.recursiveInsert(root, fifthVal);
+    root = bsTree.insert(root, firstVal);
+    bsTree.insert(root, secondVal);
+    bsTree.insert(root, thirdVal);
+    bsTree.insert(root, fourthVal);
+    bsTree.insert(root, fifthVal);
 
-    bsTree.freeTree(root);
-    cout << bsTree.getRootVal() << endl;
+    cout << bsTree.search(root, "pears") << endl;
     //cout << bsTree.getRootVal() << endl;
     //cout << bsTree.getMin(root) << endl;
     //cout << bsTree.getMax(root) << endl;
-    
     
     
     
