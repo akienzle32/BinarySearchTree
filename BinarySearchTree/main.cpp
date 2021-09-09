@@ -26,8 +26,14 @@ int main() {
     bsTree.insert(root, thirdVal);
     bsTree.insert(root, fourthVal);
     bsTree.insert(root, fifthVal);
+    
+    cout << "The root node is: " << bsTree.getRootVal() << endl;
+    cout << "The max node is: " << bsTree.getMax(root) << endl;
+    cout << "The min node is " << bsTree.getMin(root) << "\n\n";
 
     bsTree.invertTree(root);
+    cout << "After inversion, the max node is: " << bsTree.getMax(root) << endl;
+    cout << "The min node is: " << bsTree.getMin(root) << endl;
     
     return(0);
 }

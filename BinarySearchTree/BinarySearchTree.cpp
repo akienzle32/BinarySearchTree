@@ -44,45 +44,45 @@ std::string BinarySearchTree::getMax(Node* rootPtr) const
     return(getMax(rootPtr->right));
 }
     
-Node* BinarySearchTree::insert(Node* root, std::string& newVal)
+Node* BinarySearchTree::insert(Node* rootPtr, std::string& newVal)
 {
     if (this->root == nullptr)
     {
-        root = new Node(newVal);
-        this->root = root;
+        rootPtr = new Node(newVal);
+        this->root = rootPtr;
     }
         
-    if (newVal == root->value)
-        return(root);
+    if (newVal == rootPtr->value)
+        return(rootPtr);
         
-    if (newVal < root->value)
+    if (newVal < rootPtr->value)
     {
-        if (root->left != nullptr)
-            insert(root->left, newVal);
+        if (rootPtr->left != nullptr)
+            insert(rootPtr->left, newVal);
         else
-            root->left = new Node(newVal);
+            rootPtr->left = new Node(newVal);
     }
-    else if (newVal > root->value)
+    else if (newVal > rootPtr->value)
     {
-        if (root->right != nullptr)
-            insert(root->right, newVal);
+        if (rootPtr->right != nullptr)
+            insert(rootPtr->right, newVal);
         else
-            root->right = new Node(newVal);
+            rootPtr->right = new Node(newVal);
     }
-    return(root);
+    return(rootPtr);
 }
     
-bool BinarySearchTree::search(Node* root, std::string val)
+bool BinarySearchTree::search(Node* rootPtr, std::string val)
 {
     if (root == nullptr)
         return(false);
-    if (val == root->value)
+    if (val == rootPtr->value)
         return(true);
         
-    if (val < root->value)
-        return(search(root->left, val));
+    if (val < rootPtr->value)
+        return(search(rootPtr->left, val));
     else
-        return(search(root->right, val));
+        return(search(rootPtr->right, val));
 }
     
 void BinarySearchTree::freeTree(Node* current)
