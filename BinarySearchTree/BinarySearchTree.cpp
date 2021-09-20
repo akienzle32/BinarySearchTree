@@ -38,7 +38,7 @@ std::string BinarySearchTree::getMax(Node* rootPtr) const
     if (rootPtr == nullptr)
         return("Null");
         
-    if(rootPtr->right == nullptr)
+    if (rootPtr->right == nullptr)
         return(rootPtr->value);
         
     return(getMax(rootPtr->right));
@@ -101,13 +101,10 @@ void BinarySearchTree::invertTree(Node* current)
     if (current == nullptr)
         return;
         
-    else
-    {
-        invertTree(current->left);
-        invertTree(current->right);
+    invertTree(current->left);
+    invertTree(current->right);
             
-        Node* temp = current->left;
-        current->left = current->right;
-        current->right = temp;
-    }
+    Node* temp = current->left;
+    current->left = current->right;
+    current->right = temp;
 }
