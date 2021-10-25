@@ -6,6 +6,7 @@
 //
 
 #include <stdio.h>
+#include <cstdlib>
 #include <string>
 #include "BinarySearchTree.h"
 
@@ -21,7 +22,7 @@ std::string BinarySearchTree::getRootVal() const
         return(root->value);
 }
     
-std::string BinarySearchTree::getMin(Node* rootPtr) const
+std::string BinarySearchTree::getMinNode(Node* rootPtr) const
 {
     if (rootPtr == nullptr)
         return("Null");
@@ -29,11 +30,11 @@ std::string BinarySearchTree::getMin(Node* rootPtr) const
     if (rootPtr->left == nullptr)
         return(rootPtr->value);
         
-    return(getMin(rootPtr->left));
+    return(getMinNode(rootPtr->left));
             
 }
     
-std::string BinarySearchTree::getMax(Node* rootPtr) const
+std::string BinarySearchTree::getMaxNode(Node* rootPtr) const
 {
     if (rootPtr == nullptr)
         return("Null");
@@ -41,7 +42,7 @@ std::string BinarySearchTree::getMax(Node* rootPtr) const
     if (rootPtr->right == nullptr)
         return(rootPtr->value);
         
-    return(getMax(rootPtr->right));
+    return(getMaxNode(rootPtr->right));
 }
     
 Node* BinarySearchTree::insert(Node* rootPtr, std::string& newVal)
@@ -74,8 +75,9 @@ Node* BinarySearchTree::insert(Node* rootPtr, std::string& newVal)
     
 bool BinarySearchTree::search(Node* rootPtr, std::string val)
 {
-    if (root == nullptr)
+    if (rootPtr == nullptr)
         return(false);
+    
     if (val == rootPtr->value)
         return(true);
         
@@ -83,6 +85,32 @@ bool BinarySearchTree::search(Node* rootPtr, std::string val)
         return(search(rootPtr->left, val));
     else
         return(search(rootPtr->right, val));
+}
+
+int BinarySearchTree::findHeight(Node* rootPtr)
+{
+    if (rootPtr == nullptr)
+        return 0;
+    
+    return(1 + std::max(findHeight(rootPtr->left), findHeight(rootPtr->right)));
+}
+
+bool BinarySearchTree::isBalanced(Node* rootPtr)
+{
+    int leftHeight = 0;
+    int rightHeight = 0;
+    
+    if (rootPtr == nullptr)
+        return(true);
+    
+    leftHeight = findHeight(rootPtr->left);
+    rightHeight = findHeight(rootPtr->right);
+    
+    if (abs(leftHeight - rightHeight) <= 1 and isBalanced(rootPtr->left)
+        and isBalanced(rootPtr->right))
+        return(true);
+    
+    return(false);
 }
     
 void BinarySearchTree::freeTree(Node* current)

@@ -25,13 +25,17 @@ public:
     
     std::string getRootVal() const;
     
-    std::string getMin(Node* rootPtr) const;
+    std::string getMinNode(Node* rootPtr) const;
     
-    std::string getMax(Node* rootPtr) const;
+    std::string getMaxNode(Node* rootPtr) const;
     
-    Node* insert(Node* root, std::string& newVal);
+    Node* insert(Node* rootPtr, std::string& newVal);
     
-    bool search(Node* root, std::string val);
+    bool search(Node* rootPtr, std::string val);
+    
+    int findHeight(Node* rootPtr);
+    
+    bool isBalanced(Node* rootPtr);
     
     void freeTree(Node* current);
     
